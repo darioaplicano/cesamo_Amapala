@@ -54,9 +54,17 @@
          
         var cod = $("#seleccionarMedicamento").val();
         var nombre = $("#seleccionarMedicamento option:selected").html();
-       
-         
-         var medicamento = {codigo : cod, nombre: nombre, cantidad: $("#cMedicamento").val(), tratamiento : $("#tMedicamento").val()};
+       var numeroMedicamentos = $("#cMedicamento").val();
+       var tratamientoMedicamentos = $("#tMedicamento").val();
+
+       if ((numeroMedicamentos==" ")||(tratamientoMedicamentos==""))
+        {
+
+          alert ("Error Campos Vacios: Por Favor Llenar Todos Los Campos");
+        
+        }else{
+
+          var medicamento = {codigo : cod, nombre: nombre, cantidad: numeroMedicamentos, tratamiento : tratamientoMedicamentos};
 
          
          
@@ -80,16 +88,30 @@
           $("#nMedicamento").val("");
           $("#cMedicamento").val("");
           $("#tMedicamento").val("");
-        });
 
+
+        }
+         
+                 });
+
+         $('#numero_de_identidad').keydown(function(e) {    
+        // Admite [0-9], BACKSPACE y TAB  
+        if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105) && e.keyCode != 8 && e.keyCode != 9)  
+        e.preventDefault();  
+    });  
 
          $("#boton_buscar_expediente").click(function(){
 
           var identidad = document.getElementById("numero_de_identidad").value;
 
-        
+        if (identidad == "") 
+          {
 
-          $.ajax({
+              alert("Error: Por Favor, Introduzca el Número de Identidad");
+
+          }else
+          {
+               $.ajax({
 
                   type: "POST",
                   url: "pages-modules/medical_consultations/cargar_expediente.php",
@@ -99,15 +121,21 @@
 
                   success: function(data){
                       
-                     
+                     if (data=="") {
+
+                      alert("No Existe este Expediente");
+
+                     }
+                     else{
                        var info_ex = "<div><h4><i><strong><u>Codigo de Expediente:</strong></i></u>  <h4><h5>   "+data["iden"]+"</h5></div><div><h4><i><strong><u>Nombre:  </u></i></strong><h4><h5>   "+data["nombre"]+"</h5></div><div><h4><i><strong><u>Fecha:  </i></strong></u><h4><h5>   "+data["fecha"]+"</h5></div><div><h4><i><u><strong>Sexo:  </i></u></strong><h4><h5>   "+data["sexo"]+"</h5></div><div><h4><u><i><strong>Lugar:  </i></u></strong><h4><h5>   "+data["Lugar"]+"</h5></div>";
                        
+
                        codigoDelExpediente = data["iden"];
                        codigoConsulta = data["consulta"];
 
                        $("#info_expediente").html(info_ex);
                        // $("#infoExpediente").html(data);
-               
+                      }
                   },
 
                   error: function (xhRequest, ErrorText, thrownError){
@@ -118,11 +146,20 @@
 
           });
 
+          }
+
+         
+
 
 
 
         });
 
+ $('#cMedicamento').keydown(function(e) {    
+        // Admite [0-9], BACKSPACE y TAB  
+        if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105) && e.keyCode != 8 && e.keyCode != 9)  
+        e.preventDefault();  
+    });  
 
       $("#guardarReceta").click(function(){
 

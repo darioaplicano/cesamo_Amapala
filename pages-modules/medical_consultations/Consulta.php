@@ -4,7 +4,9 @@
 	<title>Consulta</title>
 	<link rel="stylesheet" type="text/css" href="pages-modules/medical_consultations/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="pages-modules/medical_consultations/diseño.css">
-	<script type="text/javascript" src="pages-modules/medical_consultations/src.js"></script>
+	<script type="text/javascript" src="pages-modules/medical_consultations/src.js">
+   
+  </script>
 	<?php
     session_start();
     $codeE = $_SESSION['codEmpleado'];

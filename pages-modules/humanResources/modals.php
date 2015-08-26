@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                     <span class="sr-only">Cerrar</span>
                 </button>
-                <h4 class="modal-title">Información de usuario</h4>
+                <h4 class="modal-title">Información de empleado</h4>
             </div>
             <div class="modal-body">
                 
@@ -39,7 +39,7 @@
             </div>
             <div class="modal-footer right">
                 <button type="button" class="btn_update btn btn-success"
-                    data-dismiss="modal">
+                        >
                             Agregar
                 </button>
                 <button type="button" class="btn btn-danger"
@@ -67,6 +67,57 @@
             $.get('pages-modules/humanResources/addEmployeds.php', function(html){
                 $('#addEmployed .modal-body').html(html);
             });
+        });
+        $(".btn_update").click(function(event){
+            idCard = $("#idcard").val();
+            fname  = $("#fname").val();
+            sname  = $("#sname").val();
+            lfname  = $("#lfname").val();
+            lsname  = $("#lsname").val();
+            phoneNumber = $("#phoneNumber").val();
+            email = $("email").val();
+            birthDay = $("#birthDay").val();
+            direction = $("#direction").val();
+            charge = document.getElementById('charges');
+            charge = charge.options[charge.selectedIndex].value;
+            if (idCard.length <= 0 && !/^([0-9])*$/.test(idCard)){
+                $("#messageHR").html('<div class="alert alert-danger">\n\
+                La identidad ingresada no es valida</div>');
+            }else{
+                if (!/^([a-zA-Z])*$/.test(fname)){
+                    $("#messageHR").html('<div class="alert alert-danger">\n\
+                    Su primer nombre no es valido</div>');
+                }else{
+                    if (!/^([a-zA-Z])*$/.test(sname)){
+                        $("#messageHR").html('<div class="alert alert-danger">\n\
+                        Su segundo nombre no es valido</div>');
+                    }else{
+                        if (!/^([a-zA-Z])*$/.test(lfname)){
+                            $("#messageHR").html('<div class="alert alert-danger">\n\
+                            Su primer apellidoe no es valido</div>');
+                        }else{
+                            if (!/^([a-zA-Z])*$/.test(lsname)){
+                                $("#messageHR").html('<div class="alert alert-danger">\n\
+                                Su segundo apellidoe no es valido</div>');
+                            }else{
+                                if(!/^([0-9]+){8}$/.test(phoneNumber)){
+                                    $("#messageHR").html('<div class="alert alert-danger">\n\
+                                    Teléfono invalido</div>');
+                                }else{
+                                    $.get('pages-modules/humanResources/insert.php', function(html){
+                                            $("#messageHR").html(html);
+                                            window.setTimeout($("#addEmployed").modal('hide'), 60000);
+                                    });
+                                    
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+            }
+                
+                
         });
     });
 </script>

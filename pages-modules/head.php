@@ -55,11 +55,11 @@ Ingeniería del software
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand page-scroll" href="#" rel="popover"
+                    <!---<a class="navbar-brand page-scroll" href="#" rel="popover"
                        data-placement="bottom" data-content=""
                        data-original-title="">
                         <i class="fa fa-th"></i>
-                    </a>
+                    </a>--->
                     <a class="navbar-brand page-scroll" role="button" id="homes">CESAMO <small>AMAPALA</small></a>
                 </div>
                 <div class="collapse navbar-collapse" id="headNavbar">

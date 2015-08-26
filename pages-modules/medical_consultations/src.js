@@ -33,6 +33,14 @@ $("#b3").click(function() {
 
 //Procedimientos de Consulta.php
 
+    //Validacion de Inputs 
+  $('#numero_de_identidad').keydown(function(e) {    
+        // Admite [0-9], BACKSPACE y TAB  
+        if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105) && e.keyCode != 8 && e.keyCode != 9)  
+          e.preventDefault();
+    });  
+
+
 $("#menu_seleccionar_expediente").click(function(){
        
 
@@ -245,9 +253,13 @@ $("#menu_preclinica").click(function(){
 
           var identidad = document.getElementById("numero_de_identidad").value;
 
-              
+              if (identidad == "") {
+                alert("Error: Por Favor, Introduzca el Número de Identidad");
+              }
+              else
+              {
 
-          $.ajax({
+                $.ajax({
 
                   type: "POST",
                   url: "pages-modules/medical_consultations/cargar_expediente_y_preclinica.php",
@@ -257,13 +269,24 @@ $("#menu_preclinica").click(function(){
 
                   success: function(data){
                       
-                  
-                       var info_ex = "<div><h4><i><strong><u>Codigo de Expediente:</strong></i></u>  <h4><h5>   "+data["iden"]+"</h5></div><div><h4><i><strong><u>Nombre:  </u></i></strong><h4><h5>   "+data["nombre"]+"</h5></div><div><h4><i><strong><u>Fecha:  </i></strong></u><h4><h5>   "+data["fecha"]+"</h5></div><div><h4><i><u><strong>Sexo:  </i></u></strong><h4><h5>   "+data["sexo"]+"</h5></div><div><h4><u><i><strong>Lugar:  </i></u></strong><h4><h5>   "+data["Lugar"]+"</h5></div>";
+                      if (data=="") {
+
+                        alert("No existe el Expediente");
+
+                      }else{
+
+
+                        var info_ex = "<div><h4><i><strong><u>Codigo de Expediente:</strong></i></u>  <h4><h5>   "+data["iden"]+"</h5></div><div><h4><i><strong><u>Nombre:  </u></i></strong><h4><h5>   "+data["nombre"]+"</h5></div><div><h4><i><strong><u>Fecha:  </i></strong></u><h4><h5>   "+data["fecha"]+"</h5></div><div><h4><i><u><strong>Sexo:  </i></u></strong><h4><h5>   "+data["sexo"]+"</h5></div><div><h4><u><i><strong>Lugar:  </i></u></strong><h4><h5>   "+data["Lugar"]+"</h5></div>";
                        $("#info_expediente").html(info_ex);
                        var preclinica = data["preclinica"];
 
                        $("#resultado_preclinica").html(preclinica);
                        // $("#infoExpediente").html(data);
+
+
+                      }
+                  
+                      
                         
                   },
                   error: function (xhRequest, ErrorText, thrownError){
@@ -273,6 +296,10 @@ $("#menu_preclinica").click(function(){
             }
 
           });
+
+              }
+
+          
 
 
 
@@ -291,8 +318,13 @@ $("#menu_preclinica").click(function(){
           var trata = document.getElementById("txtTratamiento").value;
           var codE = document.getElementById("codE").value;
 
-          
-          $.ajax({
+          if ((codigoExpediente=="")||(motivo=="")||(examenFisico=="")||(diag=="")||(trata=="")||(codE=="")) {
+
+                alert("Error: Imposible Guardar Consulta, Existen Campos Vacios");
+
+          }else{
+
+            $.ajax({
             url: "pages-modules/medical_consultations/subir_consulta.php",
             type: "POST",
             data: {"expediente" : codigoExpediente, "motivo" : motivo, "examenFisico" : examenFisico, "diagnostico" : diag, "tratamiento" : trata , "codEmpleado" : codE},
@@ -309,6 +341,9 @@ $("#menu_preclinica").click(function(){
 
           });
           
+            
+          }
+          
 
 
 
@@ -318,11 +353,22 @@ $("#menu_preclinica").click(function(){
 
         //Procedimiento para buscar el expediente y cargar las distintas consultas al menu.
 
+        $('#buscadorExpediente3').keydown(function(e) {    
+        // Admite [0-9], BACKSPACE y TAB  
+        if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105) && e.keyCode != 8 && e.keyCode != 9)  
+        e.preventDefault();  
+    });  
+
+
     $("#buscarExpediente3").click(function(){
                         
           var identidad = document.getElementById("buscadorExpediente3").value;
         
-           $.ajax({
+            if (identidad=="") {
+                alert("Error: Introduzca el número de Indentidad");
+            }else{
+
+                     $.ajax({
 
                   type: "POST",
                   url: "pages-modules/medical_consultations/cargar_expediente_consultas.php",
@@ -330,8 +376,15 @@ $("#menu_preclinica").click(function(){
 
                   success: function(data){
                       
-                      
+                      if (data=="") {
+
+                        alert("No existe este Expediente");
+                        document.getElementById("buscadorExpediente3").value = "";
+                      }else{
+                         
                          $("#selectorConsultas").html(data);
+                      
+                      }
                     
                      
                   
@@ -345,9 +398,38 @@ $("#menu_preclinica").click(function(){
           });
 
 
+            }
+          
+
         });
 
 //Procedimientos para el modulo de Control de Citas
+
+$('#p_nombre').keydown(function(e) {    
+        // Admite [0-9], BACKSPACE y TAB  
+        if (!((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)))  
+        e.preventDefault();  
+    });  
+  $('#s_nombre').keydown(function(e) {    
+        // Admite [0-9], BACKSPACE y TAB  
+         if (!((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)))  
+        e.preventDefault();  
+    });  
+   $('#p_apellido').keydown(function(e) {    
+        // Admite [0-9], BACKSPACE y TAB  
+        if (!((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)))  
+        e.preventDefault();  
+    });  
+    $('#s_apellido').keydown(function(e) {    
+        // Admite [0-9], BACKSPACE y TAB  
+         if (!((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)))  
+        e.preventDefault();  
+    });  
+    $('#telefono').keydown(function(e) {    
+        // Admite [0-9], BACKSPACE y TAB  
+        if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105) && e.keyCode != 8 && e.keyCode != 9)  
+          e.preventDefault();
+    });  
 
 
 $("#buscarCita").click(function(){
@@ -451,8 +533,14 @@ $("#guardarCita").click(function(){
                                 alert("Error: No se ha especificado la hora de la Cita");
                                 }
                     else{
+                        if ((p_nombre == "")||(s_nombre == "")||(p_apellido == "")||(s_apellido == "")||(telefono == "")) {
 
-                        $.ajax({
+
+                            alert("Error: Imposible Guardar la Cita, Por Favor Llenar Todos los Campos");
+                        }
+                        else{
+
+                                $.ajax({
 
                             url: "pages-modules/medical_consultations/conexion_nueva_cita.php", 
 
@@ -493,8 +581,13 @@ $("#guardarCita").click(function(){
                                         }
                         })
 
+                        }
+
+                        
+
                      }
                 }
+
 
  
 });

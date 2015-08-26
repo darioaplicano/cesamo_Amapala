@@ -16,6 +16,7 @@
  </script>
 <?php
 
+    
     session_start();
     $codeE = $_SESSION['codEmpleado'];
 
@@ -76,33 +77,7 @@
 
 
 	
-	<!--<table class="table table-hover">
-		
-
-
-		
-		<tr>
-			<th>Hora</th>
-			<th>Nombre</th>
-			<th>Telefono</th>
-			<th>CodigoMedico</th>
-			
-		</tr>
-    <div id="resultado">
-     
-     <tr>
-     <td>10:00</td>
-     <td>Douglas</td>
-     <td>98155905</td>
-     <td>2</td>
-     </tr>
-
-    
-		</div>
-
-
-</table>-->
-<div class="row col-sm-9" id="formulario_nueva_cita">
+	<<div class="row col-sm-9" id="formulario_nueva_cita">
 
   <div class="form-group row col-sm-8">
     <label for="p_nombre">Primer Nombre</label>

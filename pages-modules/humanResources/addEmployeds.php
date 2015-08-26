@@ -5,7 +5,7 @@
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
 echo <<<HTML
-    <div class="form-horizontal" id="addForm" name="addForm">
+    <div class="form-horizontal" id="addFormEmployed" name="addForm">
         <div class="form-group">
             <label class="col-sm-4 control-label" for="formGroup">
                 Numero de identidad
@@ -16,7 +16,9 @@ echo <<<HTML
                 </span>
                 <div class="required-field-block">
                     <input type="text" class="form-control"
-                        placeholder="Número de identidad" id="idcard">
+                        placeholder="Número de identidad" id="idcard"
+                            maxlength="13" onChange="validateCountless(this.value);"
+                                require>
                     <div class="required-icon">
                         <div class="text">*</div>
                     </div>
@@ -33,7 +35,8 @@ echo <<<HTML
                 </span>
                 <div class="required-field-block">
                     <input type="text" class="form-control"
-                        placeholder="Primer nombre" id="fname">
+                        placeholder="Primer nombre" id="fname"
+                                onChange="validateName(this.value);">
                     <div class="required-icon">
                         <div class="text">*</div>
                     </div>
@@ -50,7 +53,8 @@ echo <<<HTML
                 </span>
                 <div class="required-field-block">
                     <input type="text" class="form-control"
-                        placeholder="Segunodo nombre" id="sname">
+                        placeholder="Segundo nombre" id="sname"
+                            onChange="validateName(this.value);">
                 </div>
             </div>
         </div>
@@ -64,7 +68,8 @@ echo <<<HTML
                 </span>
                 <div class="required-field-block">
                     <input type="text" class="form-control"
-                        placeholder="Primer apellido" id="lfname">
+                        placeholder="Primer apellido" id="lfname"
+                            onChange="validateName(this.value);">
                     <div class="required-icon">
                         <div class="text">*</div>
                     </div>
@@ -81,7 +86,8 @@ echo <<<HTML
                 </span>
                 <div class="required-field-block">
                     <input type="text" class="form-control"
-                        placeholder="Segundo apellido" id="lsname">
+                        placeholder="Segundo apellido" id="lsname"
+                            onChange="validateName(this.value);">
                 </div>
             </div>
         </div>
@@ -95,7 +101,9 @@ echo <<<HTML
                 </span>
                 <div class="required-field-block">
                     <input type="text" class="form-control"
-                        placeholder="Número de teléfono" id="phoneNumber">
+                        placeholder="Número de teléfono" id="phoneNumber"
+                            onChange="validatePhone(this.value);"
+                                maxlength="8">
                 </div>
             </div>
         </div>
@@ -122,8 +130,9 @@ echo <<<HTML
                     <i class="fa fa-user fa-fw"></i>
                 </span>
                 <div class="required-field-block">
-                    <input type="text" class="form-control"
-                        placeholder="Fecha de nacimiento" id="birthDay">
+                    <input type="date" class="form-control"
+                        placeholder="Fecha de nacimiento" id="birthDay"
+                            name="fecha">
                     <div class="required-icon">
                         <div class="text">*</div>
                     </div>
@@ -139,7 +148,7 @@ echo <<<HTML
                     <i class="fa fa-key fa-fw"></i>
                 </span>
                 <div class="required-field-block">
-                    <input type="password" class="form-control"
+                    <input class="form-control"
                         placeholder="Dirección" id="direction">
                     <div class="required-icon">
                         <div class="text">*</div>
@@ -155,7 +164,7 @@ echo <<<HTML
                 <span class="input-group-addon">
                     <i class="fa fa-users"></i>
                 </span>
-                <select class="form-control" id="employeds">
+                <select class="form-control" id="charges">
 HTML;
                 foreach ($rows as $row){
                     $cargoID           = $row['cargoID'];
@@ -166,7 +175,33 @@ HTML;
 echo <<<HTML
             </div>
         </div>
-                <div id="message"></div>
+                <div id="messageHR"></div>
     </div>
 HTML;
 ?>
+
+<script>
+    function validateCountless(number){
+        if (!/^([0-9])*$/.test(number))
+            $("#messageHR").html('<div class="alert alert-danger">\n\
+                La identidad ingresada no es valida</div>');  
+        else
+                $("#messageHR").html(''); 
+    }
+    function validatePhone(number){
+        var expresionRegular1=/^([0-9]+){8}$/;//<--- con esto vamos a validar el numero
+        if(!expresionRegular1.test(number))
+            $("#messageHR").html('<div class="alert alert-danger">\n\
+             El número de telefono no es valido</div>'); 
+        else
+            $("#messageHR").html(''); 
+    }
+    
+    function validateName(name){
+        if (!/^([a-zA-Z])*$/.test(name))
+            $("#messageHR").html('<div class="alert alert-danger">\n\
+             El nombre o apellido ingresado no es valido</div>');
+        else
+            $("#messageHR").html('');  
+    }
+</script>
