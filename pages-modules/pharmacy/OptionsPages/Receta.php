@@ -87,19 +87,19 @@ else{
     <!--Columna 1-->
     <div class="col-sm-6">
         <div class="divClass">
-            C&oacute;digo de Receta: <label id="CodReceta"><?php echo $codReceta;?></label>
+            <h5><span class="label label-default">C&oacute;digo de Receta:</span> <?php echo $codReceta;?></h5>
         </div>
         <div>
-            C&oacute;digo de Consulta: <label id="CodConsulta"><?php echo $codConsulta;?></label>
+            <h5><span class="label label-default">C&oacute;digo de Consulta:</span> <?php echo $codConsulta;?></h5>
         </div>
     </div>
     <!--Columna 2-->
     <div class="col-sm-6">
         <div class="divClass">
-            Medico: <label id="nombreMedico"><?php echo $nombreMedico;?></label>
+            <h5><span class="label label-default">Medico:</span> <?php echo $nombreMedico;?></h5>
         </div>
         <div>
-            Fecha: <label id="fecha"><?php echo $fecha;?></label>
+            <h5><span class="label label-default">Fecha:</span> <?php echo $fecha;?></h5>
         </div>
     </div>
 </div>

@@ -17,7 +17,7 @@
 <div class="form-inline well" id="div1">
     C&oacute;digo de receta:
     <input id="codReceta" type="number" class="form-control" min="0">
-    <button class="btn btn-success" id="btnBuscarReceta">Buscar Receta</button>
+    <button style="margin-top: -6px" class="btn btn-success" id="btnBuscarReceta">Buscar Receta</button>
 </div>
 
 

@@ -6,6 +6,13 @@ $(document).ready(function(){
         $("#selectpicker").append("<option>"+matrix[i].NombreMedicamento+"</option>");
     }
     
+    
+    $('#cantMedicamento').keydown(function(e) {    
+        // Admite [0-9], BACKSPACE y TAB  
+        if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105) && e.keyCode != 8 && e.keyCode != 9)  
+        e.preventDefault();  
+    });  
+    
     $("#addMedicamento").click(function(){
         var index = $("#selectpicker").find(":selected").index();
         if(!$.trim($("#cantMedicamento").val()) || !$.trim($("#expMedicamento").val())){
@@ -33,7 +40,10 @@ $(document).ready(function(){
         });
         
         $.post("pages-modules/pharmacy/OptionsPages/AlmacenarSalidasMedicamentosRecetaScript.php", {matrizEntradaMedicamento: matrizEntradaMedicamento});
+       
+        alert("Datos Guardados.");
         
+        $("#adminArea").load("pages-modules/pharmacy/OptionsPages/BuscarMedicamento.php");
     });
     
     $("#btnBuscarMedicamentoBM").click(function(){

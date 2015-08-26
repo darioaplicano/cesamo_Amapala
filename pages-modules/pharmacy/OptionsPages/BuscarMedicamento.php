@@ -35,7 +35,7 @@ $statment->closeCursor();
 <div class="container-fluid">
     <div class="form-inline">
         <input id="txtMedicamentoBM" type="text" class="form-control" placeholder="Nombre del medicamento">
-        <button id="btnBuscarMedicamentoBM" class="btn btn-success">Buscar Medicamento</button>
+        <button id="btnBuscarMedicamentoBM" class="btn btn-success" style="margin-top: -7px">Buscar Medicamento</button>
     </div>
     
     <div style="margin-top: 30px; border: 1px solid gainsboro; border-radius: 5px; padding-top: 10px; padding-bottom: 10px " class="row"><!--Ojo con el uso de row para el uso de col-md-4 -->        
@@ -58,7 +58,7 @@ $statment->closeCursor();
                 </div>
                 
                 <div class="col-md-5">
-                    <button id="addMedicamento" class="btn btn-success" style="width: 100%; margin-top: 25px; margin-bottom: 25px" type="button">Agregar Medicamento</button>
+                    <button id="addMedicamento" class="btn btn-success" style="width: 100%; margin-top: 22px; margin-bottom: 13px" type="button">Agregar Medicamento</button>
                     <button id="btnnuevoMedicamento" class="btn btn-success" style="width: 100%;">Nuevo Medicamento</button>
                 </div>
             </div>
@@ -94,20 +94,27 @@ $statment->closeCursor();
                     <h3 class="title">Nuevo Medicamento</h3>
           </div>
 
-          <div class="modal-body">
+            <div class="modal-body" style="padding-left: 25px">
               <div role="form" class="form-group form-horizontal">
-                  <label class="label label-default">Nombre Medicamento</label>
-                    <input style="margin-bottom: 10px; margin-top: 5px; width: 300px" class="form-control" id="txtNombreMedicamento" type="text">
-                    
-                    <label class="label label-default">Nombre Fabricante</label>
+                  <div class="row">
+                      <label class="label label-default">Nombre Medicamento</label>
+                  </div>
+                    <input style="margin-bottom: 10px; margin-top: 0px; width: 300px" class="form-control" id="txtNombreMedicamento" type="text">
+
+                    <div class="row">
+                        <label class="label label-default">Nombre Fabricante</label>
+                    </div>
                     <input style="margin-bottom: 10px; margin-top: 5px; width: 300px" class="form-control" id="txtNombreFabricante" type="text">
-                  
-                    <label class="label label-default">Unidad de Medida</label>
+                    
+                    <div class="row">
+                        <label class="label label-default">Unidad de Medida</label>
+                    </div>
                     <input style="margin-bottom: 10px; margin-top: 5px; width: 300px" class="form-control" id="txtUnidadMedida" type="text">                    
                     
-                    <label class="label label-default">Descripcion del Medicamento</label>
+                    <div class="row">
+                        <label class="label label-default">Descripcion del Medicamento</label>
+                    </div> 
                     <textarea id="txtDescMedicamento" style="margin-bottom: 10px; margin-top: 5px; height: 100px" class="form-control"></textarea>
-                    
               </div>
           </div>
             
