@@ -1,0 +1,59 @@
+div#mot_consulta{
+	display: none;
+	margin: 20px;
+}
+div#selecExpediente{
+	display: block;
+	margin: 20px;
+}
+div#examen_medico{
+	display: none;
+	margin: 20px;
+}
+div#diagnostico{
+	display: none;
+	margin: 20px;
+}
+div#tratamiento{
+	display: none;
+	margin: 20px;
+}
+div#citas_area_de_trabajo{
+	display: block;
+	margin: 20px;
+}
+div#busca{
+	display: block;
+	margin: 20px;
+}
+div#resultadoBusqueda{
+	display: none;
+}
+div#formulario_nueva_cita{
+	display: none;	
+}
+#cancelar{
+	display: none;	
+	margin: 20px;
+}
+#busca2{
+	display: none;
+	margin: 20px;
+}
+
+#cancelarCita{
+	display: none;
+	margin: 20px;
+}
+#enviar{
+	display: none;
+	margin: 20px;
+}
+#tablaPreclinica{
+	display: none;
+	margin: 20px;
+}
+#examenesPreclinica{
+	display: none;
+	margin: 20px;
+}

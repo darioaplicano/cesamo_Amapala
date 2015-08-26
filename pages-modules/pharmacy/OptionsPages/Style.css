@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07-28-2015, 11:50:58 AM
+    Author     : owner
+*/
+
+div#div1{
+    height: 75px;
+    text-align: center;
+}
+
+div.divClass{
+    margin-bottom: 30px;
+}
+
+div.segCol{
+    margin-right: 100px;
+}
+
+div#divDatosReceta{
+    border: 1px solid gainsboro; 
+    border-radius: 5px; 
+    padding-top: 5px;
+}
+
+div#TablaMedicamentos{
+    margin-top: -16px;
+}
+
+th.cantEntregada{
+    width: 155px;
+}
